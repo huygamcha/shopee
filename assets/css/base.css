@@ -1,0 +1,244 @@
+:root {
+    --primary-color:#f95130;
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color:#dbdbdb;
+
+    --navbar-height: 30px;
+    --header-height:120px;
+    --header-with-search-height: calc((var(--header-height) - var(--navbar-height)));
+    /* để khi header hoặc navbar thay đổi thì không cần chỉnh sửa phần search */
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    /* 100%=16px */
+    font-size: 62.5%;
+    /* đồng nghĩa với 1rem=10px */
+    line-height: 1.6rem;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+/* responsive thì thứ tự sẽ là grid row column */
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    /* chức năng là căn cho 2 bên của navbar */
+}
+.grid__full-width {
+    width: 100%;
+}
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+    /* chức năng của wrap nếu tổng độ dài vượt quá row thì sẽ nhảy xuống dòng */
+}
+/* test phần column */
+.grid__column-2{
+    padding-left: 5px;
+    padding-right: 5px;
+    /* để tạo khoảng cách mặc định cho các cột với nhau */
+    width: 16.6667%;
+}
+.grid__column-10{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+}
+.grid__column-2-4{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+}
+/* test phần column */
+
+@keyframes openqr {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes growth{
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+/* Begin Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;   
+    animation:openqr linear .1s;
+    display: none;
+    /* muốn show thì bỏ luôn dòng display: none */
+}
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.modal__body {
+    --growth-from:0.5;
+    --growth-to:1;
+    /* background-color: var(--white-color); */
+    z-index: 1;
+    margin: auto;
+    position: relative;
+    animation:growth linear .1s;
+}
+
+/* End Modal */
+.btn{
+    height: 36px;
+    min-width: 120px;
+    border: none;
+    color: var(--text-color);
+    line-height: 37px;
+    border-radius: 2px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+.btn.btn--normal:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.btn--size-s{
+    height: 32px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn.btn--primary{
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+/* select input */
+.select-input{
+    position: relative;
+    background-color: var(--white-color);
+    width: 200px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    margin-left: 5px;
+    line-height: 36px;
+    box-shadow: 0 0.2px 1px #999;
+}
+.select-input__label{
+    padding: 0px 10px;
+}
+.home-filter__btn{
+    min-width: 90px;
+    /* vì phần base được ưu tiên sau nên phần này chỉ còn cách fix là bỏ cái này qua để chồng lên--> thoả mãn width=90px */
+}
+.select-input__icon{
+    font-size: 10px;
+    padding: 0px 10px;
+}
+.select-input__list{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 37px;
+    background-color: var(--white-color);
+    list-style-type: none;
+    border-radius: 2px;
+    padding: 6px 14px;
+    display: none;
+    box-shadow: 0 2px 10px 0px #dfb2b2;
+    z-index: 1;
+}
+.select-input__link{
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
+}
+.select-input__link:hover{
+    color: var(--primary-color);
+}
+.select-input:hover .select-input__list{
+    display: block;
+}
+.select-input__list::after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 20px;
+    top: -5px;
+    right: 0;
+}
+.home-filter__page{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    /* 1 kỹ thuật để đẩy toàn bộ sang bên trái */
+}
+.home-filter__page-control{
+    margin: 0px 22px;
+    display: flex;
+    width: 72px;
+    height: 36px;
+    align-items: center;
+}
+.home-filter__page-btn{
+    flex: 1;
+    display: flex;
+    /* kỹ thuật chia đôi với thẻ cha là control t chia ra thành 2 phần đều nhau bằng cách sử dụng flex */
+    text-decoration: none;
+    background-color: #fff;
+    padding: 12px 12px;
+}
+.home-filter__page-current{
+    color: var(--primary-color);
+}
+.home-filter__page-num{
+    font-size: 1.5rem;
+}
+.home-filter__page-icon{
+    font-size: 1rem;
+    color: #555;
+    margin: auto;
+    /* cái này dùng vì thẻ cha của nó là .home-filter__page-btn lên là ta phải dùng margin:auto để căn chính giữa  */
+}
+.home-filter__page-btn:first-child{
+    border-right: 1px solid #ebebeb;
+    /* làm vách ngăn giữa thanh điều khiển trang */
+}
+.home-filter__page-btn--disable{
+    background-color: #f9f9f9;
+    cursor: default;
+}
+.home-filter__page-btn--disable .home-filter__page-icon{
+    color: #ccc;
+    
+} 
+/* select input */
+.home-product__pagination{
+    margin: 48px 0px 32px 0;
+}
